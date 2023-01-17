@@ -97,7 +97,7 @@ body {
   transition: transform 0.2s;
 
   background: #fafafa;
-  
+
   box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
     2px 2px 2px #ffffff inset;
   animation: anime 3s cubic-bezier(0.16, 1, 0.3, 1) 1s;
@@ -109,7 +109,7 @@ body {
 
 @keyframes anime {
   0% {
-    color: #000000;
+    color: transparent;
     width: 60px;
     height: 30px;
     background: #f0f0f0;
@@ -117,23 +117,24 @@ body {
       -10px -10px 10px #ffffff inset;
   }
   25% {
-    width: 100px;
+    color: black;
+    width: 90px;
     height: 50px;
     background: #f8f8f8;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
       0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
   }
   50% {
-    width: 10px;
-    height: 60px;
+    width: 140px;
+    height: 70px;
     background: #f8f8f8;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
       0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
   }
   100% {
     color: #000000;
-    width: 150px;
-    height: 140px;
+    width: 300px;
+    height: 90px;
     margin: 5px;
     background: #fafafa;
     box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
@@ -208,12 +209,11 @@ input {
   text-align: center;
 }
 
-#mainListDiv{
-
+#mainListDiv {
   display: flex;
 }
 
-input{
+input {
   justify-content: center;
   align-items: center;
 }
