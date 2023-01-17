@@ -94,9 +94,10 @@ body {
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
+  font-size: 0;
   transition: transform 0.2s;
 
-  background: #fafafa;
+  background: transparent;
 
   box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
     2px 2px 2px #ffffff inset;
@@ -110,34 +111,39 @@ body {
 @keyframes anime {
   0% {
     color: transparent;
+    font-size: 2px;
     width: 60px;
     height: 30px;
-    background: #f0f0f0;
+    background: transparent;
     box-shadow: 0 0 0 #747474, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset,
       -10px -10px 10px #ffffff inset;
   }
   25% {
-    color: black;
+    color: gray;
+    font-size: 8px;
     width: 90px;
     height: 50px;
-    background: #f8f8f8;
+    background: transparent;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
       0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
   }
   50% {
+    color: rgb(90, 89, 89);
+    font-size: 12px;
     width: 140px;
     height: 70px;
-    background: #f8f8f8;
+    background: transparent;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
       0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
   }
   100% {
-    color: #000000;
+    font-size: 16px;
+    color: white;
     width: 300px;
     height: 90px;
     margin: 5px;
-    background: #fafafa;
-    box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
+    background: transparent;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
       2px 2px 2px #ffffff inset;
   }
 }
@@ -216,4 +222,69 @@ input {
 input {
   justify-content: center;
   align-items: center;
+}
+
+.boxResult {
+  width: 0;
+  height: 0;
+  color: transparent;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 0;
+  transition: transform 0.2s;
+
+  background: #fafafa;
+
+  box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
+    2px 2px 2px #ffffff inset;
+  animation: anim 3s cubic-bezier(0.16, 1, 0.3, 1) 1s;
+  animation-fill-mode: forwards;
+}
+.boxResult:hover {
+  transform: scale(1.2);
+}
+
+@keyframes anim {
+  0% {
+    color: transparent;
+    font-size: 2px;
+    width: 60px;
+    height: 30px;
+    padding: 50px;
+    background: transparent;
+    box-shadow: 0 0 0 #747474, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset,
+      -10px -10px 10px #ffffff inset;
+  }
+  25% {
+    color: rgb(153, 153, 153);
+    font-size: 8px;
+    width: 140px;
+    height: 50px;
+    background: transparent;
+    box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
+      0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  50% {
+    color: rgb(138, 136, 136);
+    font-size: 8px;
+    width: 240px;
+    height: 120px;
+    background: transparent;
+    box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
+      0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  100% {
+    padding: 50px;
+    font-size: 16px;
+    color: white;
+    width: 400px;
+    height: 180px;
+    margin: 5px;
+    background: transparent;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
+      2px 2px 2px #ffffff inset;
+  }
 }

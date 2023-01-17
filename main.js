@@ -2,37 +2,42 @@ import words from "./words";
 const search = document.getElementById("searchBox");
 const listHolder = document.querySelector("ul");
 const container = document.querySelector(".container");
+let timer;
 search.addEventListener("keyup", () => {
-  document.querySelector("dl")?.remove();
-  listHolder.innerHTML = "";
-  const val = search.value;
+  if (timer) clearTimeout(timer);
+  timer = setTimeout(() => {
+    document.querySelector("dl")?.remove();
+    listHolder.innerHTML = "";
+    const val = search.value.toLowerCase();
 
-  if (val.length > 0) {
-    let result = words
-      .filter((ele) => {
-        return ele.startsWith(val);
-      })
-      .splice(0, 5);
+    if (val.length > 0) {
+      let result = words
+        .filter((ele) => {
+          return ele.startsWith(val);
+        })
+        .splice(0, 5);
 
-    for (let i = 0; i < result.length; i++) {
-      const list = document.createElement("li");
-      list.className = "box";
-      list.innerHTML = result[i];
-      listHolder.appendChild(list);
+      for (let i = 0; i < result.length; i++) {
+        const list = document.createElement("li");
+        list.className = "box";
+        list.innerHTML = result[i];
+        listHolder.appendChild(list);
+      }
     }
-  }
+  }, 1000);
 });
 
 listHolder.addEventListener("click", async (e) => {
   const selected = e.target.innerHTML;
-  console.log(selected);
+
   const response = await getMeaning(selected);
   listHolder.innerHTML = "";
 
   const dl = document.createElement("dl");
+  dl.classList.add("boxResult");
   const dt = document.createElement("dt");
   const dd = document.createElement("dd");
-  dt.innerText = response[0].word;
+  dt.innerHTML = `<b><em>${response[0].word}</em></b>`;
   dd.innerText = response[0].meanings[0].definitions[0].definition;
 
   dl.appendChild(dt);
@@ -51,48 +56,3 @@ const getMeaning = async (meanWord) => {
     console.log(err);
   }
 };
-
-// const getMeaning = async (word) => {
-//   try {
-//     const response = await fetch(
-//       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-//     );
-//     const data = await response.json();
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// search.addEventListener("keyup",  () => {
-//   document.querySelector("ul")?.remove();
-//   const val = search.value;
-//   let results = words.filter((word) => word.startsWith(val)).splice(0, 2);
-//   if (val.length === 0) results = [];
-//   if (results.length > 0) {
-//     const list = document.createElement("ul");
-//     document
-//       .querySelector(".container")
-//       .insertAdjacentElement("beforeend", list);
-//     const markup = results
-//       .map((word) => {
-//         return `<a class="box">${word}</a>`;
-//       })
-//       .join("");
-//     list.innerHTML = markup;
-//   }
-// });
-
-// const unordered = document.querySelector("ul");
-
-// unordered.addEventListener("click",async(e)=>{
-//   const selected = e.target.innerHTML;
-// const response = await getMeaning(selected);
-// console.log(selected);
-// })
-
-// const fun = async ()=>{
-//     const res = await getMeaning("hello");
-//     console.log(res);
-// }
-// fun();
