@@ -15,10 +15,25 @@ const getMeaning = async (word) => {
 };
 
 search.addEventListener("keyup", async () => {
+  document.querySelector("ul")?.remove();
   const val = search.value;
-  const results = words.filter((word) => word.includes(val)).splice(0, 5);
-  console.log(results);
+  let results = words.filter((word) => word.startsWith(val)).splice(0, 2);
+  if (val.length === 0) results = [];
+  if (results.length > 0) {
+    const list = document.createElement("ul");
+    document
+      .querySelector(".container")
+      .insertAdjacentElement("beforeend", list);
+    const markup = results
+      .map((word) => {
+        return `
 
-  const result = await getMeaning("hello");
-  console.log(result);
+        <a class="box">${word}</a>
+      
+      
+      `;
+      })
+      .join("");
+    list.innerHTML = markup;
+  }
 });
