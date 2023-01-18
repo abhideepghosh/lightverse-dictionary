@@ -9,7 +9,7 @@ search.addEventListener("keyup", () => {
     document.querySelector("dl")?.remove();
     listHolder.innerHTML = "";
     const val = search.value.toLowerCase();
-
+    // console.log("debouncing")
     if (val.length > 0) {
       let result = words
         .filter((ele) => {
@@ -23,6 +23,14 @@ search.addEventListener("keyup", () => {
         list.innerHTML = result[i];
         listHolder.appendChild(list);
       }
+
+      if(result.length==0){
+        const message = document.createElement("h1");
+        message.className="box";
+        message.innerText = "NO WORDS FOUND !!";
+        listHolder.appendChild(message);
+      }
+
     }
   }, 1000);
 });
@@ -31,18 +39,29 @@ listHolder.addEventListener("click", async (e) => {
   const selected = e.target.innerHTML;
 
   const response = await getMeaning(selected);
+  console.log(response);
   listHolder.innerHTML = "";
 
   const dl = document.createElement("dl");
   dl.classList.add("boxResult");
   const dt = document.createElement("dt");
   const dd = document.createElement("dd");
+  
   dt.innerHTML = `<b><em>${response[0].word}</em></b>`;
-  dd.innerText = response[0].meanings[0].definitions[0].definition;
+  // dd.innerHTML = `<br>${response[0].meanings[0].definitions[0].definition}`;
+  dd.innerHTML = response[0].meanings[0].definitions[0].definition;
 
   dl.appendChild(dt);
   dl.appendChild(dd);
   container.appendChild(dl);
+
+  const audio = document.createElement("audio");
+  const source = document.createElement("source");
+  audio.setAttribute("controls",true);
+  source.setAttribute("src",`${response[0].phonetics[0].audio}`);
+  audio.appendChild(source);
+  dl.appendChild(audio);
+  
 });
 
 const getMeaning = async (meanWord) => {
