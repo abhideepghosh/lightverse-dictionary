@@ -55,12 +55,28 @@ listHolder.addEventListener("click", async (e) => {
   dl.appendChild(dd);
   container.appendChild(dl);
 
-  const audio = document.createElement("audio");
-  const source = document.createElement("source");
-  audio.setAttribute("controls",true);
-  source.setAttribute("src",`${response[0].phonetics[0].audio}`);
-  audio.appendChild(source);
-  dl.appendChild(audio);
+  if(response[0].phonetics[0].audio!==''){
+  //   const audio = document.createElement("audio");
+  // const source = document.createElement("source");
+  // audio.setAttribute("controls",true);
+  // source.setAttribute("src",`${response[0].phonetics[0].audio}`);
+  // audio.appendChild(source);
+  // dl.appendChild(audio);
+
+  const img = document.createElement("img");
+  dl.appendChild(img);
+  img.setAttribute("src",`https://icon-library.com/images/play-icon-transparent-background/play-icon-transparent-background-22.jpg`);
+  img.className="playBtn"
+  img.addEventListener("click", () => {
+   const audio = new Audio(response[0].phonetics[0].audio);
+    audio.play();
+  });
+
+  }
+
+  
+
+  
   
 });
 
